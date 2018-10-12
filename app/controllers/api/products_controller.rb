@@ -9,4 +9,6 @@ class Api::ProductsController < ApplicationController
     render 'product_one_view.json.jbuilder'
   end
 
+  
+
 end
