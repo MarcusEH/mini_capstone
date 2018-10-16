@@ -19,6 +19,25 @@ class Api::ProductsController < ApplicationController
     @product = Product.find_by(id: product_id)
     render 'show.json.jbuilder'
   end
+
+  def create
+    @product = Product.new(name: "clown nose", image_url: "someurlaskdnw", price: 111, description: "It's a clown nose, man!")
+    @product.save
+    render 'show.json.jbuilder'
+  end
+
+  def update
+    product_id = params[:id]
+    @product = Product.find_by(id: product_id)
+
+    @product.name = "coffee cup"
+    @product.image_url = "someurlhere"
+    @product.price = 13
+    @product.description = "A plain coffee cup for your java."
+    @product.save
+    render "show.json.jbuilder"
+
+  end
   
 
 end
