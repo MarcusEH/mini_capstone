@@ -16,6 +16,13 @@ ap response.body
 
 #update
 
-response = Unirest.patch("localhost:3000/api/products/7")
+response = Unirest.patch("localhost:3000/api/products/9",
+  parameters: {
+    input_name: "paper fan",
+    input_image_url: "blahblahurl",
+    # input_price: 50,
+    input_description: "why would you want this?"
+  }
+)
 
 ap response.body
