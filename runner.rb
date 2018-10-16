@@ -1,6 +1,11 @@
 require 'unirest'
 
-response = Unirest.get("localhost:3000/api/products")
+require 'awesome_print'
 
-response = Unirest.get("localhost:3000/api/firstproduct")
-p response.body
+response = Unirest.get("http://localhost:3000/api/products")
+
+ap response.body
+
+response = Unirest.get("http://localhost:3000/api/products/1")
+
+ap response.body
