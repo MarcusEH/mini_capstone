@@ -1,0 +1,1 @@
+json.message "You have successfully deleted the product"
