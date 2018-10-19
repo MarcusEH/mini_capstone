@@ -1,4 +1,16 @@
 class Product < ApplicationRecord
+  
+  validates :name, :description, presence: true
+  validates :name, uniqueness: true
+
+  # validates :price, presence: true #this is not really necessary since numericality does not allow nil.
+
+  validates :price, numericality: { greater_than: 0 }
+  validates :price, length: { maximum: 9}
+
+  # validates :description, presence: true
+  validates :description, length: { minimum: 10}
+
   def is_discounted?
     # if price < 10
     #   true
@@ -22,4 +34,5 @@ class Product < ApplicationRecord
     total = price + tax
     "The total is $#{total}" 
   end
+
 end
