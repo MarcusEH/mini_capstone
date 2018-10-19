@@ -32,8 +32,8 @@ require 'awesome_print'
 #   }
 # )
 
+# # ap response.body
+
+# response = Unirest.delete("localhost:3000/api/products/6")
+
 # ap response.body
-
-response = Unirest.delete("localhost:3000/api/products/6")
-
-ap response.body

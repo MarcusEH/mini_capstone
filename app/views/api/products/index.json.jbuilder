@@ -11,3 +11,5 @@ json.array! @products do |product|
   
   json.partial! "product.json.jbuilder", product: product
 end
+
+#you technically don't need the .json.jbuilder for a partial. Rails knows to look for that and assumes that's the extension.
