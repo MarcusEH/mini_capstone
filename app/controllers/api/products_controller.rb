@@ -5,7 +5,10 @@ class Api::ProductsController < ApplicationController
   # end
 
   def index
-    @products = Product.all
+    # @products = Product.all
+    search_term = params[:user_input]
+    @products = Product.where('name LIKE ?', "%#{search_term}%")
+    @products.order!(:id)
     render 'index.json.jbuilder'
   end
 
@@ -21,9 +24,18 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(name: params[:input_name], image_url: params[:input_image_url], price: params[:input_price], description: params[:input_description])
+    @product = Product.new(
+      name: params[:input_name],
+      image_url: params[:input_image_url],
+      price: params[:input_price],
+      description: params[:input_description]
+      )
     @product.save
-    render 'show.json.jbuilder'
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render "error.json.jbuilder"
+    end
   end
 
   def update
@@ -45,7 +57,11 @@ class Api::ProductsController < ApplicationController
     # @product.price = 13
     # @product.description = "A plain coffee cup for your java."
     # @product.save
-    render "show.json.jbuilder"
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render "error.json.jbuilder"
+    end
 
   end
 
