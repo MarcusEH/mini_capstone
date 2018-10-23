@@ -1,9 +1,16 @@
 class Product < ApplicationRecord
+  # belongs_to :supplier 
+  #another way to do the supplier method defined below but it doesn't always work. Method name must be singular.
   
+  def supplier
+    Supplier.find_by(id: supplier_id)
+  end
+
   # validates :name, :description, presence: true
   # validates :name, uniqueness: true
-
-  # # validates :price, presence: true #this is not really necessary since numericality does not allow nil.
+  #uniqueness caused the error I think..
+  # validates :price, presence: true 
+  #this is not really necessary since numericality does not allow nil.
 
   # validates :price, numericality: { greater_than: 0 }
   # validates :price, length: { maximum: 9}
@@ -34,9 +41,4 @@ class Product < ApplicationRecord
     total = price + tax
     "The total is $#{total}" 
   end
-
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
-
 end
