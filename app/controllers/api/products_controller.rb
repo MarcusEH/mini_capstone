@@ -76,7 +76,7 @@ class Api::ProductsController < ApplicationController
     @product = Product.find_by(id: product_id)
     @product.destroy
 
-    render 'destroy.json.jbuilder'
+    render json: {message: "you successfully deleted this product"}
 
   end  
 

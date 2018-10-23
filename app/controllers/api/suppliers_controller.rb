@@ -24,5 +24,21 @@ class Api::SuppliersController < ApplicationController
     
   end
 
-  
+  def update
+    @supplier = Supplier.find_by(id: params[:id])
+    @supplier.name = params[:input_name] || @supplier.name
+    @supplier.email = params[:input_email] || @supplier.email
+    @supplier.phone_number = params[:input_phone_number] || supplier.phone_number
+    @supplier.save
+
+    render 'show.json.jbuilder'
+  end
+
+  def destroy
+    @supplier = Supplier.find_by(id: params[:id])
+    @supplier.destroy
+
+    render json: {message: "you successfully deleted this supplier"}
+    
+  end
 end
