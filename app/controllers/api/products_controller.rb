@@ -34,7 +34,8 @@ class Api::ProductsController < ApplicationController
       name: params[:input_name],
       image_url: params[:input_image_url],
       price: params[:input_price],
-      description: params[:input_description]
+      description: params[:input_description],
+      supplier_id: params[:input_supplier_id]
       )
     @product.save
     if @product.save
@@ -51,6 +52,7 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:input_image_url] || @product.image_url
     @product.price = params[:input_price] || @product.price
     @product.description = params[:input_description] || @product.description
+    @product.supplier_id = params[:input_supplier_id] || @product.supplier_id
     @product.save
     # @product.update(
     #   name: params[:input_name],

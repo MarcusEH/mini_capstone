@@ -1,15 +1,15 @@
 class Product < ApplicationRecord
   
-  validates :name, :description, presence: true
-  validates :name, uniqueness: true
+  # validates :name, :description, presence: true
+  # validates :name, uniqueness: true
 
-  # validates :price, presence: true #this is not really necessary since numericality does not allow nil.
+  # # validates :price, presence: true #this is not really necessary since numericality does not allow nil.
 
-  validates :price, numericality: { greater_than: 0 }
-  validates :price, length: { maximum: 9}
+  # validates :price, numericality: { greater_than: 0 }
+  # validates :price, length: { maximum: 9}
 
-  # validates :description, presence: true
-  validates :description, length: { minimum: 10}
+  # # validates :description, presence: true
+  # validates :description, length: { minimum: 10}
 
   def is_discounted?
     # if price < 10
@@ -33,6 +33,10 @@ class Product < ApplicationRecord
   def friendly_total
     total = price + tax
     "The total is $#{total}" 
+  end
+
+  def supplier
+    Supplier.find_by(id: supplier_id)
   end
 
 end
