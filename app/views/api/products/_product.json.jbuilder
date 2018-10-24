@@ -1,6 +1,6 @@
 json.id product.id
 json.name product.name
-
+json.images product.images
 json.price product.price
 json.supplier_id product.supplier_id
 json.supplier_name product.supplier.name
