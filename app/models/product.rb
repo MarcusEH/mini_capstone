@@ -1,11 +1,11 @@
 class Product < ApplicationRecord
-  # belongs_to :supplier 
+  belongs_to :supplier 
   #another way to do the supplier method defined below but it doesn't always work. Method name must be singular.
   has_many :images
 
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
 
   # validates :name, :description, presence: true
   # validates :name, uniqueness: true
