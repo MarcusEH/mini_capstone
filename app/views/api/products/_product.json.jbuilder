@@ -11,4 +11,5 @@ json.discounted product.is_discounted?
 json.tax product.tax
 json.total number_to_currency(product.total)
 # json.friendly_total product.friendly_total
-# json.user_info current_user
+# json.user_info product.current_user
+json.user_info current_user
