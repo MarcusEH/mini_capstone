@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :orders
   belongs_to :supplier 
   #another way to do the supplier method defined below but it doesn't always work. Method name must be singular.
   has_many :images
