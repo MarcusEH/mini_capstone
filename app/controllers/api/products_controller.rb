@@ -1,8 +1,6 @@
 class Api::ProductsController < ApplicationController
-  # def products_all
-  #   @products = Product.all
-  #   render 'products.json.jbuilder'
-  # end
+  before_action :authenticate_admin, except: [:show, :index]
+  #optionally could say only: [:create, :update, :destroy] I guess whichever makes more sense in the specific app
 
   def index
     # @products = Product.all
