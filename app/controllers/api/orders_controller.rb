@@ -1,26 +1,23 @@
 class Api::OrdersController < ApplicationController
+  before_action:authenticate_user
   def create
-    if current_user
-      product = Product.find_by(id: params[:product_id])
-      quantity = params[:quantity].to_i
-      subtotal = product.price * quantity
-      tax = product.tax * quantity
-      total = product.total * quantity
-      @order = Order.new(
-        product_id: params[:product_id],
-        quantity: params[:quantity],
-        user_id: current_user.id,
-        subtotal: subtotal,
-        tax: tax,
-        total: total
-      )
-      if @order.save
-        render "show.json.jbuilder"
-      else
-        render json: {message: "your order cannot be completed"}
-      end
+    product = Product.find_by(id: params[:product_id])
+    quantity = params[:quantity].to_i
+    subtotal = product.price * quantity
+    tax = product.tax * quantity
+    total = product.total * quantity
+    @order = Order.new(
+      product_id: params[:product_id],
+      quantity: params[:quantity],
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
+      total: total
+    )
+    if @order.save
+      render "show.json.jbuilder"
     else
-      render json:  [], status: :unauthorized
+      render json: {message: "your order cannot be completed"}
     end
   end
 
@@ -38,11 +35,9 @@ class Api::OrdersController < ApplicationController
   def index
     #@orders = Order.where(user_id: current_user.id)
     #alt above is not as good
-    if current_user
-      @orders = current_user.orders 
-      render 'index.json.jbuilder'
-    else
-      render json: [], status: :unauthorized
-    end
+    
+    @orders = current_user.orders 
+    render 'index.json.jbuilder'
+    
   end
 end
