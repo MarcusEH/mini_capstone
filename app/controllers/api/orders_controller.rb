@@ -2,9 +2,7 @@ class Api::OrdersController < ApplicationController
   def create
     product = Product.find_by(id: params[:product_id])
     quantity = params[:quantity].to_i
-    subtotal = 1.11 #so it's a decimal
     subtotal = product.price * quantity
-    tax = 1.09
     tax = product.tax * quantity
     total = product.total * quantity
     @order = Order.new(
@@ -34,10 +32,9 @@ class Api::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(user_id: current_user.id)
-    #@order = current_user.orders 
-    #alt above
-    
+    #@orders = Order.where(user_id: current_user.id)
+    #alt above is not as good
+    @order = current_user.orders 
     render 'index.json.jbuilder'
   end
 end
