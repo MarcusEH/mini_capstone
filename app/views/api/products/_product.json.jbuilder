@@ -2,7 +2,7 @@ json.id product.id
 json.name product.name
 json.images product.images
 json.price product.price
-json.categories product.categories
+json.categories product.categories.map { |category| {:name => category.name}}
 json.supplier_id product.supplier_id
 json.supplier_name product.supplier.name
 json.supplier_email product.supplier.email
