@@ -15,15 +15,14 @@ class Api::ProductsController < ApplicationController
       #sort by id
       @products.order!(:id)
     end
-
+    if params[:input_category]
+      category_name = params[:input_category]
+      category = Category.find_by(name: category_name)
+      @products = category.products
+    end
     render 'index.json.jbuilder'
   end
-
-  # def first_product
-  #   @product = Product.first
-  #   render 'product_one_view.json.jbuilder'
-  # end
-
+  
   def show
     product_id = params[:id]
     @product = Product.find_by(id: product_id)

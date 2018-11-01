@@ -1,20 +1,36 @@
 class Api::OrdersController < ApplicationController
   before_action:authenticate_user
   def create
-    product = Product.find_by(id: params[:product_id])
-    quantity = params[:quantity].to_i
-    subtotal = product.price * quantity
-    tax = product.tax * quantity
-    total = product.total * quantity
+    carted_products = CartedProduct.where(status: "carted")
+    @carted_products = carted_products.where(user_id: current_user.id)
+    subtotal = 0
+    tax = 0
+    total = 0
+    @carted_products.each do |carted_product|
+      product = Product.find_by(id: carted_product.product_id)
+      subtotal += product.price * carted_product.quantity
+      tax += product.tax * carted_product.quantity
+      total += subtotal + tax
+      carted_product.status = "purchased"
+    end
+
+    
+    # quantity = params[:quantity].to_i
+    # subtotal = product.price * quantity
+    # tax = product.tax * quantity
+    # total = product.total * quantity
     @order = Order.new(
-      product_id: params[:product_id],
-      quantity: params[:quantity],
       user_id: current_user.id,
       subtotal: subtotal,
       tax: tax,
       total: total
     )
     if @order.save
+      @carted_products.each do |carted_product|
+        carted_product.order_id = @order.id
+        carted_product.save
+      end
+
       render "show.json.jbuilder"
     else
       render json: {message: "your order cannot be completed"}

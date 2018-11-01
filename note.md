@@ -1,0 +1,1 @@
+was working on associations. Fix the associations in products and orders

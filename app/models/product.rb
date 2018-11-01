@@ -1,7 +1,8 @@
 class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
-  has_many :orders
+  has_many :carted_products
+  has_many :orders, through: :carted_products #changed for checkout 
   belongs_to :supplier 
   #another way to do the supplier method defined below but it doesn't always work. Method name must be singular.
   has_many :images
