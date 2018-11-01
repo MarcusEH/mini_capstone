@@ -1,1 +1,1 @@
-was working on associations. Fix the associations in products and orders
+fix image controller to allow admin to update and delete images

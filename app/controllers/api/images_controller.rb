@@ -8,6 +8,5 @@ class Api::ImagesController < ApplicationController
     @image.save
 
     render json: {message: "you have added your image successfully"}
-    
   end
 end
