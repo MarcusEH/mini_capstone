@@ -1,5 +1,5 @@
 class Api::SuppliersController < ApplicationController
-
+  before_action :authenticate_admin
   def show
     @supplier = Supplier.find_by(id: params[:id])
 
