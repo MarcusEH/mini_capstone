@@ -3,17 +3,15 @@ class Api::OrdersController < ApplicationController
   def create
     @carted_products = CartedProduct.where(user_id: current_user.id, status: 'carted')
     subtotal = 0
-    tax = 0
-    total = 0
     @carted_products.each do |carted_product|
       # product = Product.find_by(id: carted_product.product_id)
 
       subtotal += carted_product.product.price * carted_product.quantity
-      tax += carted_product.product.tax * carted_product.quantity
-      total += subtotal + tax
+      
       carted_product.status = "purchased"
     end
-
+    tax = subtotal * 0.09
+    total = subtotal + tax
     @order = Order.new(
       user_id: current_user.id,
       subtotal: subtotal,
