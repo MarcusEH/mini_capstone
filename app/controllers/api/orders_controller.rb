@@ -7,7 +7,6 @@ class Api::OrdersController < ApplicationController
       # product = Product.find_by(id: carted_product.product_id)
 
       subtotal += carted_product.product.price * carted_product.quantity
-      
       carted_product.status = "purchased"
     end
     tax = subtotal * 0.09
@@ -19,11 +18,12 @@ class Api::OrdersController < ApplicationController
       total: total
     )
     if @order.save
-      @carted_products.each do |carted_product|
-        carted_product.order_id = @order.id
-        carted_product.save
-      end
-
+      # @carted_products.each do |carted_product|
+      #   carted_product.order_id = @order.id
+      #   carted_product.save
+      # end
+      @carted_products.update_all(status: 'purchased', order_id: @order.id)
+      #this syntax above is better than the loop because you don't repeatedly make requests to the db. it's looping on the db side not the ruby side.
       render "show.json.jbuilder"
     else
       render json: {message: "your order cannot be completed"}
