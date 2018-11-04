@@ -7,5 +7,6 @@
   <p>Images:</p>
   <p><% product.images.each do |image| %>
         <img src="<%= image.url %>">
-     <% end %>
+     <% end %></p>
+  <p><a href="/products/<%=product.id %>">Click here for more information on this product </a></p>
 <% end %>
