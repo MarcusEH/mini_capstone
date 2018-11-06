@@ -1,0 +1,8 @@
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Enter your new product name<input type="text" value="<% @product.name %>" name="name"></p>
+  <p>Enter your new product's new price:<input type="decimal" value="<% @product.price %>" name="price"></p>
+  <p>Enter your product's new description<input type="text" value="<% @product.description %>" name="description"></p>
+  <p>Enter your new product's supplier:<input type="integer" value="<% @product.supplier_id %>" name="supplier_id"></p>
+  <input type="submit" value="submit changes">
+</form>

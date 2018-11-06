@@ -6,5 +6,7 @@
 <p>Images:</p>
 <p><% @product.images.each do |image| %>
       <img src="<%= image.url %>">
+<p><a href="/products/<% @product.id %>" data-method="delete" rel="nofollow">Delete this product</a></p>
    <% end %></p>
 <a href="/products">Click here to return to all products</a>
+
