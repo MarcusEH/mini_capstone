@@ -42,7 +42,7 @@ class Api::ProductsController < ApplicationController
     if @product.save
       render "show.json.jbuilder"
     else
-      render "error.json.jbuilder"
+      render json: {errors: @product.errors.full_messages}, status: :bad_request
     end
   end
 

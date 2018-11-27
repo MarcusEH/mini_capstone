@@ -11,13 +11,13 @@ class Product < ApplicationRecord
   #   Supplier.find_by(id: supplier_id)
   # end
 
-  # validates :name, :description, presence: true
+  validates :name, :description, presence: true
   # validates :name, uniqueness: true
   #uniqueness caused the error I think..
-  # validates :price, presence: true 
+  validates :price, presence: true 
   #this is not really necessary since numericality does not allow nil.
-
-  # validates :price, numericality: { greater_than: 0 }
+  validates :supplier_id, presence: true
+  validates :price, numericality: { greater_than: 0 }
   # validates :price, length: { maximum: 9}
 
   # # validates :description, presence: true

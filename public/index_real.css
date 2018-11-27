@@ -1,0 +1,14 @@
+body{
+  font-family: Verdana, Geneva, sans-serif;
+  background-image: url('whirlpool.png');
+}
+h1{
+  text-align: center;
+}
+
+.container {
+  background-color: #3d3d3d;
+}
+.row{
+  background-color: #999999;
+}

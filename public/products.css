@@ -1,0 +1,15 @@
+body{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-image: url('wormz.png');
+}
+h1{
+  text-align: center;
+}
+
+.container {
+  background-color: #3d3d3d;
+}
+.row{
+  background-color: #999999;
+}
+
